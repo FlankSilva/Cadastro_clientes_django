@@ -1,6 +1,16 @@
+{% extends 'index.html' %}
+{% load bootstrap %}
+
+{% block title %} Página de Login {% endblock %}
+
+{% block main %}
 <h2>Tela de Login</h2>
-<form action="" method="POST">
+<div class="col-6">
+   <form action="" method="POST">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Login</button>
+    {{ form|bootstrap }}
+    <button type="submit" class="btn btn-success">Login</button>
 </form>
+</div>
+
+{% endblock %}
