@@ -1,0 +1,6 @@
+<h2>Tela de Login</h2>
+<form action="" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Login</button>
+</form>
