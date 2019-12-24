@@ -4,13 +4,28 @@
 
 {% block main %}
 
-<h1>Seja bem vindo!</h1>
+<div class="row">
+    <div class="col-sm">
 
-    {% if user.is_authenticated %}
-        <p>Ola {{ user.username }}</p>
-        <a href="{% url 'logout' %}">Sair</a>
-    {% else %}
-        <a href="{% url 'login' %}">Login</a>
-    {% endif %}
+    </div>
+    <div class="col-md">
+      <h1>Seja bem vindo!</h1>
+    </div>
+    <div class="col-sm">
+        {% if user.is_authenticated %}
+            <p>Ola {{ user.username }}</p>
+            <a href="{% url 'logout' %}" class="btn btn-danger">Sair</a>
+        {% else %}
+            <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+        {% endif %}
+    </div>
+  </div>
+{% endblock %}
 
+{% block footer%}
+    <footer class="footer">
+        <div class="container">
+            <span class="text-muted">Desenvolvimento web com Django 2x</span>
+        </div>
+    </footer>
 {% endblock %}

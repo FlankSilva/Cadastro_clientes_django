@@ -1,15 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'index.html' %}
+
+{% block title %} Confirmação de exclusão {% endblock %}
+
+{% block main %}
 <h1>Tem certeza que deseja deletar: {{ person.first_name }} ?</h1>
 
 <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
-    <button type="submit">Deletar</button>
+    <button type="submit" class="btn btn-danger">Deletar</button>
 </form>
-</body>
-</html>
+{% endblock %}
+
+{% block footer%}
+    <footer class="footer">
+        <div class="container">
+            <span class="text-muted">Desenvolvimento web com Django 2x</span>
+        </div>
+    </footer>
+{% endblock %}

@@ -3,19 +3,41 @@
 {% block title %} Seja bem vindo {% endblock %}
 
 {% block main %}
-    <a href="{% url 'logout' %}">Sair</a>
-    <ul>
-    {% for person in persons %}
 
-        <li>
-            <a href="{% url 'person_update' person.id %}">{{ person.first_name }}</a>
-            <a href="{% url 'persons_delete' person.id %}">Deletar</a>
-        </li>
+    <div class="row">
+        <div class="col">
 
-    {% endfor %}
-    </ul>
-    <a href="{% url 'person_new' %}">Novo Cliente</a>
-</body>
-</html>
+        </div>
+        <div class="col-6">
+            <h3>Listagem de Clientes</h3>
+            <ul class="list-group">
+            {% for person in persons %}
 
+                <li class="list-group-item">
+                    <a href="{% url 'person_update' person.id %}">{{ person.first_name }}</a>
+                    <a href="{% url 'persons_delete' person.id %}" class="trash-item"><i class="fas fa-trash-alt"></i></a>
+                </li>
+
+            {% endfor %}
+            </ul>
+
+            <a href="{% url 'person_new' %}" class="btn btn-primary">Novo Cliente</a>
+        </div>
+        <div class="col">
+            {% if user.is_authenticated %}
+                <p>Ola {{ user.username }} <a href="{% url 'logout' %}">
+                    <span class="badge badge-dark">Sair</span>
+                </a></p>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block footer%}
+    <footer class="footer">
+        <div class="container">
+            <span class="text-muted">Desenvolvimento web com Django 2x</span>
+        </div>
+    </footer>
 {% endblock %}
