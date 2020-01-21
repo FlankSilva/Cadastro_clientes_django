@@ -7,7 +7,26 @@ from .forms import PersonForm
 # Create your views here.
 @login_required
 def persons_list(request):
-    persons = Person.objects.all()
+    nome = request.GET.get('nome', None)
+    sobreNome = request.GET.get('sobreNome', None)
+    check = request.GET.get('meu', None)
+
+    '''
+        name && sobreNome --> persons = Person.objects.filter(first_name=nome, last_name=sobreNome)
+        name OR sobreNome --> persons = Person.objects.filter(first_name__icontains=nome) | Person.objects.filter(last_name__icontains=sobreNome)
+        __icontains --> vai desativar o case sensitive
+    '''
+
+    if nome or sobreNome:
+        if nome == '':
+            nome = '.'
+        elif sobreNome == '':
+            sobreNome = '.'
+        persons = Person.objects.filter(first_name__icontains=nome) | Person.objects.filter(last_name__icontains=sobreNome)
+
+    else:
+        persons = Person.objects.all()
+
     return render(request, 'person.html', {'persons': persons})
 
 
@@ -43,3 +62,5 @@ def persons_delete(request, id):
         return redirect('person_list')
 
     return render(request, 'person_delete_confirm.html', {'person': person})
+
+

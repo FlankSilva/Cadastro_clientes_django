@@ -3,6 +3,23 @@
 {% block title %} Seja bem vindo {% endblock %}
 
 {% block main %}
+    <div class="row">
+        <div class="col-12">
+            <form action="" class="form-group">
+                <div class="row">
+                    <div class="col-5">
+                        <input type="text" id="nome" name="nome" class="form-control" placeholder="Primeiro nome">
+                    </div>
+                    <div class="col-5">
+                        <input type="text" id="sobreNome" name="sobreNome" class="form-control" placeholder="Sobre Nome">
+                    </div>
+                    <div class="col-2">
+                        <button class="btn btn-primary md-2" type="submit">Pesquisar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <div class="row">
         <div class="col">
@@ -14,7 +31,7 @@
             {% for person in persons %}
 
                 <li class="list-group-item">
-                    <a href="{% url 'person_update' person.id %}">{{ person.first_name }}</a>
+                    <a href="{% url 'person_update' person.id %}">{{ person.first_name }} {{person.last_name}}</a>
                     <a href="{% url 'persons_delete' person.id %}" class="trash-item"><i class="fas fa-trash-alt"></i></a>
                 </li>
 
@@ -25,9 +42,16 @@
         </div>
         <div class="col">
             {% if user.is_authenticated %}
-                <p>Ola {{ user.username }} <a href="{% url 'logout' %}">
-                    <span class="badge badge-dark">Sair</span>
-                </a></p>
+                <p>Ola {{ user.username }}
+                    <a href="{% url 'logout' %}">
+                        <span class="badge badge-dark">Sair</span>
+                    </a>
+                </p>
+                <p>
+                    <a href="{% url 'atualizar' %}">
+                        <span class="badge badge-dark">Trocar senha</span>
+                    </a>
+                </p>
             {% endif %}
         </div>
     </div>

@@ -8,4 +8,3 @@ def hello(request):
 
 def article(request, year):
     return HttpResponse(f'O ano informado foi: {str(year)}')
-

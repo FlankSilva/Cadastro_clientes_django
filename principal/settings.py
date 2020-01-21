@@ -136,4 +136,6 @@ LOGIN_URL = '/login/'
 
 LOGIN_REDIRECT_URL = 'person_list'
 
+
+
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')

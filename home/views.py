@@ -10,3 +10,4 @@ def home(request):
 def mylogout(request):
     logout(request)
     return render(request, 'home.html')
+
